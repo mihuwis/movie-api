@@ -23,6 +23,10 @@ public class MovieGenre {
         this.movies = movies;
     }
 
+    public MovieGenre(String genreName) {
+        this.genreName = genreName;
+    }
+
     public MovieGenre() {
     }
 

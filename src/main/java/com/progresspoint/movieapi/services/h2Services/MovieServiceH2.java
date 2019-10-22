@@ -47,7 +47,7 @@ public class MovieServiceH2 implements MovieService {
     }
 
     @Override
-    public Optional<Movie> save(Movie object) {
-        return Optional.empty();
+    public Movie save(Movie object) {
+        return movieRepository.save(object);
     }
 }
