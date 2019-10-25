@@ -45,8 +45,6 @@ public class MovieGenreController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-
-
     private Resource<MovieGenre> createResource(MovieGenre movieGenre){
         Resource<MovieGenre> resource = new Resource<>(movieGenre);
         resource.add(linkTo(methodOn(MovieGenreController.class).getById(movieGenre.getGenreId())).withSelfRel());

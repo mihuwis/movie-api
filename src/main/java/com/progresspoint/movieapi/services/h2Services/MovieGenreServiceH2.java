@@ -19,11 +19,6 @@ public class MovieGenreServiceH2 implements MovieGenreService {
     }
 
     @Override
-    public MovieGenre findByMovieGenreName(String movieGenreName) {
-        return null;
-    }
-
-    @Override
     public Stream<MovieGenre> findAll() {
         return StreamSupport.stream(movieGenreRepository.findAll().spliterator(), false);
     }
