@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MovieGenreServiceH2 implements MovieGenreService {
@@ -24,12 +25,12 @@ public class MovieGenreServiceH2 implements MovieGenreService {
 
     @Override
     public Stream<MovieGenre> findAll() {
-        return null;
+        return StreamSupport.stream(movieGenreRepository.findAll().spliterator(), false);
     }
 
     @Override
-    public Optional<MovieGenre> findById(Long aLong) {
-        return Optional.empty();
+    public Optional<MovieGenre> findById(Long id) {
+        return movieGenreRepository.findById(id);
     }
 
     @Override

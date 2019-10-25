@@ -22,8 +22,8 @@ public class MovieServiceH2 implements MovieService {
 
 
     @Override
-    public Movie findByTitle(String title) {
-        return null;
+    public Optional<Movie> findByName(String title) {
+        return movieRepository.getMoviesByGenres(title);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class MovieServiceH2 implements MovieService {
     }
 
     @Override
-    public Optional<Movie> findById(Long aLong) {
-        return Optional.empty();
+    public Optional<Movie> findById(Long id) {
+        return movieRepository.findById(id);
     }
 
     @Override
@@ -49,5 +49,10 @@ public class MovieServiceH2 implements MovieService {
     @Override
     public Movie save(Movie object) {
         return movieRepository.save(object);
+    }
+
+    @Override
+    public Stream<Movie> getAllByGenre(String genreName){
+        return movieRepository.getMoviesByGenresIsLike(genreName);
     }
 }

@@ -1,5 +1,7 @@
 package com.progresspoint.movieapi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Movie {
             name = "movie_movie_genre",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_genre_id"))
+    @JsonManagedReference
     private Set<MovieGenre> genres = new HashSet<>();
 
     public Movie(String title, String year, String producer, Set<MovieGenre> genres) {
