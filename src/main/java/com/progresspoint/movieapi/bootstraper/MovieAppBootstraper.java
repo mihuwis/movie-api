@@ -37,6 +37,8 @@ public class MovieAppBootstraper implements CommandLineRunner {
         movieGenreService.save(horrorMovie);
         MovieGenre romanceMovie = new MovieGenre("romance");
         movieGenreService.save(romanceMovie);
+        MovieGenre dramaMovie = new MovieGenre("drama");
+        movieGenreService.save(dramaMovie);
 
         Movie movie01 = new Movie("Titanic", "1990", "WB",
                 new HashSet<>(Arrays.asList(actionMovie, romanceMovie)));
@@ -58,9 +60,25 @@ public class MovieAppBootstraper implements CommandLineRunner {
                 new HashSet<>(Arrays.asList(romanceMovie, comedyMovie)));
         movieService.save(movie05);
 
-        Movie movie06 = new Movie("Toy story", "2012", "Pixar",
+        Movie movie06 = new Movie("Toy story", "2001", "Pixar",
                 new HashSet<>(Arrays.asList(animationMovie, comedyMovie, actionMovie)));
         movieService.save(movie06);
+
+        Movie movie07 = new Movie("Titanic", "1945", "Semafor",
+                new HashSet<>(Arrays.asList(actionMovie, romanceMovie)));
+        movieService.save(movie07);
+
+        Movie movie08 = new Movie("Toy story 2", "2010", "Pixar",
+                new HashSet<>(Arrays.asList(animationMovie, comedyMovie, actionMovie)));
+        movieService.save(movie08);
+
+        Movie movie09 = new Movie("Toy story 3", "2014", "Pixar",
+                new HashSet<>(Arrays.asList(animationMovie, comedyMovie, actionMovie)));
+        movieService.save(movie09);
+
+        Movie movie10 = new Movie("Toy soldier", "2003", "DB",
+                new HashSet<>(Arrays.asList(dramaMovie, romanceMovie)));
+        movieService.save(movie10);
     }
 
 
