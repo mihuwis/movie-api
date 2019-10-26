@@ -5,17 +5,24 @@ import com.progresspoint.movieapi.repository.MovieGenreRepository;
 import com.progresspoint.movieapi.services.MovieGenreService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
+//@Transactional
 public class MovieGenreServiceH2 implements MovieGenreService {
 
     private final MovieGenreRepository movieGenreRepository;
 
     public MovieGenreServiceH2(MovieGenreRepository movieGenreRepository) {
         this.movieGenreRepository = movieGenreRepository;
+    }
+
+    @Override
+    public Stream<MovieGenre> findByMovieGenreName(String movieGenreName) {
+        return movieGenreRepository.findByGenreNameLike(movieGenreName);
     }
 
     @Override

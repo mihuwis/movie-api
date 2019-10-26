@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
+//@Transactional
 public class MovieServiceH2 implements MovieService {
 
     private final MovieRepository movieRepository;
@@ -30,7 +31,13 @@ public class MovieServiceH2 implements MovieService {
     }
 
     @Override
+    public Optional<Movie> findByTitle(String title) {
+        return movieRepository.getMovieByTitle(title);
+    }
+
+    @Override
     public void delete(Movie object) {
+
     }
 
     @Override
@@ -43,4 +50,8 @@ public class MovieServiceH2 implements MovieService {
         return movieRepository.save(object);
     }
 
+    @Override
+    public Stream<Movie> getAllByGenre(String genreName){
+        return movieRepository.getMoviesByGenres(genreName);
+    }
 }

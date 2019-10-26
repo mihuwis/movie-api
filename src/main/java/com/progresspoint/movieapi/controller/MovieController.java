@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -48,6 +49,24 @@ public class MovieController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/genre/{genre}")
+    @Transactional
+    public ResponseEntity<Resources<Resource<Movie>>> getByGenre(@PathVariable String genre){
+        Resources<Resource<Movie>> resources = new Resources<>(
+                movieService.getAllByGenre(genre)
+                .map(this::createResource)
+                .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Resource<Movie>> getByTitle(@PathVariable String name){
+        return movieService.findByTitle(name)
+                .map(this::createResource)
+                .map(movieResource -> ResponseEntity.ok().body(movieResource))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
     private Resource<Movie> createResource(Movie movie){
