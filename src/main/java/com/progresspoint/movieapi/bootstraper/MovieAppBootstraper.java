@@ -12,12 +12,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class movieAppBootstraper  implements CommandLineRunner {
+public class MovieAppBootstraper implements CommandLineRunner {
 
     private final MovieService movieService;
     private final MovieGenreService movieGenreService;
 
-    public movieAppBootstraper(MovieService movieService, MovieGenreService movieGenreService) {
+    public MovieAppBootstraper(MovieService movieService, MovieGenreService movieGenreService) {
         this.movieService = movieService;
         this.movieGenreService = movieGenreService;
     }

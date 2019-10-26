@@ -5,13 +5,12 @@ import com.progresspoint.movieapi.repository.MovieRepository;
 import com.progresspoint.movieapi.services.MovieService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
+//@Transactional
 public class MovieServiceH2 implements MovieService {
 
     private final MovieRepository movieRepository;
@@ -22,11 +21,6 @@ public class MovieServiceH2 implements MovieService {
 
 
     @Override
-    public Optional<Movie> findByName(String title) {
-        return movieRepository.getMoviesByGenres(title);
-    }
-
-    @Override
     public Stream<Movie> findAll() {
         return StreamSupport.stream((movieRepository.findAll()).spliterator(), false);
     }
@@ -34,6 +28,11 @@ public class MovieServiceH2 implements MovieService {
     @Override
     public Optional<Movie> findById(Long id) {
         return movieRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Movie> findByTitle(String title) {
+        return movieRepository.getMovieByTitle(title);
     }
 
     @Override
@@ -53,6 +52,6 @@ public class MovieServiceH2 implements MovieService {
 
     @Override
     public Stream<Movie> getAllByGenre(String genreName){
-        return movieRepository.getMoviesByGenresIsLike(genreName);
+        return movieRepository.getMoviesByGenres(genreName);
     }
 }

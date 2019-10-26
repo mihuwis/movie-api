@@ -45,6 +45,16 @@ public class MovieGenreController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/genre/{genreName}")
+    public ResponseEntity<Resources<Resource<MovieGenre>>> getAllByGenreName(@PathVariable String genreName){
+        Resources<Resource<MovieGenre>> resources = new Resources<>(
+                movieGenreService.findByMovieGenreName(genreName)
+                .map(this::createResource)
+                .collect(Collectors.toList())
+        );
+        return ResponseEntity.ok().body(resources);
+    }
+
 
 
     private Resource<MovieGenre> createResource(MovieGenre movieGenre){
