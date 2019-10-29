@@ -7,6 +7,6 @@ import java.util.stream.Stream;
 
 public interface MovieService extends CrudService<Movie, Long>{
 
-   Optional<Movie> findByTitle(String name);
+    Stream<Movie> findAllByTitle(String name);
     Stream<Movie> getAllByGenre(String genreName);
 }
